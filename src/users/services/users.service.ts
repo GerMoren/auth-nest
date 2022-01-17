@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ConfigService } from '@nestjs/config';
+// import { ConfigService } from '@nestjs/config';
 import { Client } from 'pg';
 import * as bcrypt from 'bcrypt';
 
 import { User } from '../entities/user.entity';
-import { Order } from '../entities/order.entity';
+// import { Order } from '../entities/order.entity';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 
 import { ProductsService } from './../../products/services/products.service';
@@ -16,15 +16,15 @@ import { CustomersService } from './customers.service';
 export class UsersService {
   constructor(
     private productsService: ProductsService,
-    private configService: ConfigService,
+    // private configService: ConfigService,
     @Inject('PG') private clientPg: Client,
     @InjectRepository(User) private userRepo: Repository<User>,
     private customersService: CustomersService,
   ) {}
 
   findAll() {
-    const apiKey = this.configService.get('API_KEY');
-    const dbName = this.configService.get('DATABASE_NAME');
+    // const apiKey = this.configService.get('API_KEY');
+    // const dbName = this.configService.get('DATABASE_NAME');
     return this.userRepo.find({
       relations: ['customer'],
     });
